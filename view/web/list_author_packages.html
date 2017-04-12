@@ -1,0 +1,34 @@
+<link href="/css/list-all.css" rel="stylesheet"  media="screen">
+<div id="search" class="row">
+  <% if (!packages.length) { %>
+    <div class="ant-alert ant-alert-warn">
+    当前私有库未发布任何包
+    </div>
+  <% } %>
+  <div class="col-12">
+
+  <% if (packages.length) { %>
+    <% for (var i = 0; i < packages.length; i++) {
+      var item = packages[i];
+    %>
+    <ul>
+      <li class="package">
+        <a href="/package/<%= item.name %>" class="package-name"><%= item.name %></a>
+        <span class="package-version"><%= item.latest_version%></span>
+        <span class="package-description"><%= item.description %></span>
+      </li>
+    </ul>
+    <% } %>
+  <% } %>
+  </div>
+
+  <div class="col-24">
+    <span>总共:<%= totalCount%> 个库</span>
+    <div class="pagination">
+        <% for (var i = 1; i < totalPage+1; i++) {%>
+        <a href="/u/<%= author%>?index=<%= i%>" class="page gradient"><%= i%></a>
+        <%}%>
+	</div>
+   
+  </div>
+</div>
